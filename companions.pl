@@ -38,7 +38,7 @@ $sth->execute();
 while ( (my $first_name, my $last_name, my $home) = $sth->fetchrow_array() ) 
 #fetchrow_array returns the values of the next row in the result set as a list that we can assign to an array
 {
-    	print "$first_name\t\t $last_name\t\t $home \n";
+    	print "$first_name\t\t$last_name\t\t$home\n";
 }
 
 $sth->finish();
