@@ -1,38 +1,5 @@
 <!DOCTYPE html>
 
-<!-- Project one : HTML / JavaScript -->
-<!--  -->
-<!-- You will design a small web application GUI, using HTML and JavaScript that does the following: -->
-<!--  -->
-<!-- 1) Write a function which processes the following data structure to insert an HTML table into a web page. -->
-<!--  -->
-<!-- var table_data = [ { first_name : 'Rose', -->
-<!--                      last_name  : 'Tyler', -->
-<!--                      home       : 'Earth' }, -->
-<!--                    { first_name : 'Zoe', -->
-<!--                      last_name  : 'Heriot', -->
-<!--                      home       : 'Space Station W3'}, -->
-<!--                    { first_name : 'Jo', -->
-<!--                      last_name  : 'Grant', -->
-<!--                      home       : 'Earth'}, -->
-<!--                    { first_name : 'Leela', -->
-<!--                      last_name  : null, -->
-<!--                      home       : 'Unspecified'}, -->
-<!--                    { first_name : 'Romana', -->
-<!--                      last_name  : null, -->
-<!--                      home       : 'Gallifrey'}, -->
-<!--                    { first_name : 'Clara', -->
-<!--                      last_name  : 'Oswald', -->
-<!--                      home       : 'Earth'}, -->
-<!--                    { first_name : 'Adric', -->
-<!--                      last_name  : null, -->
-<!--                      home       : 'Alzarius'}, -->
-<!--                    { first_name : 'Susan', -->
-<!--                      last_name  : 'Foreman', -->
-<!--                      home       : 'Gallifrey'} ]; -->
-<!--  -->
-<!--  -->
-
 <html>
   <head>
     <meta charset="utf-8">
@@ -64,35 +31,33 @@
           last_name  : 'Foreman',
           home       : 'Gallifrey'} ];
 
-      var makeTable = function() {
-        var table = document.getElementById('myTable');
+      var makeRows = function() {
+        var table = document.getElementById('companionsTable');
 
-        for (var i=0; i < table_data.length; i++) {
+        for (var i = 0; i < table_data.length; i++) {
           var item = table_data[i];
           
-          var newRow = table.insertRow(table.rows.length);
+          var row = table.insertRow(table.rows.length);
 
-          var firstNameCell = newRow.insertCell(0);
-          var firstNameText = document.createTextNode(item.first_name);
-          firstNameCell.appendChild(firstNameText);
+          var makeCell = function(index, cellContents) {
+            var cell = row.insertCell(index);
+            var text = document.createTextNode(cellContents);
+            cell.appendChild(text);
+          };
 
-          var lastNameCell = newRow.insertCell(1);
-          var lastNameText = document.createTextNode(item.last_name);
-          lastNameCell.appendChild(lastNameText);
-
-          var homeCell = newRow.insertCell(2);
-          var homeText = document.createTextNode(item.home);
-          homeCell.appendChild(homeText);
+          makeCell(0, item.first_name);
+          makeCell(1, item.last_name);
+          makeCell(2, item.home);
 
         }
       };
     </script>
   </head>
-  <body onload="makeTable();">
+  <body onload="makeRows();">
 
     <h1>Doctor Who Companions</h1>
 
-    <table border="1" id="myTable">
+    <table border="1" id="companionsTable">
       <tr>
         <th>First Name</th><th>Last Name</th><th>Home</th>
       </tr>
